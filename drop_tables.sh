@@ -1,0 +1,24 @@
+#!/bin/bash
+source ./.env
+
+sqlplus64 -s "$DB_CONN" <<EOF
+PROMPT Dropping Views...
+DROP VIEW CustomerSpend;
+DROP VIEW VehicleRecords;
+DROP VIEW BranchDetails;
+
+PROMPT Dropping Tables...
+DROP TABLE Transactions CASCADE CONSTRAINTS;
+DROP TABLE Rental CASCADE CONSTRAINTS;
+DROP TABLE Reservation CASCADE CONSTRAINTS;
+DROP TABLE Maintenance_Record CASCADE CONSTRAINTS;
+DROP TABLE Vehicle_Feature CASCADE CONSTRAINTS;
+DROP TABLE Vehicle CASCADE CONSTRAINTS;
+DROP TABLE Customer_Phone CASCADE CONSTRAINTS;
+DROP TABLE Customer CASCADE CONSTRAINTS;
+DROP TABLE Branch_Contact CASCADE CONSTRAINTS;
+DROP TABLE Branch CASCADE CONSTRAINTS;
+
+PROMPT All views and tables dropped successfully.
+EXIT;
+EOF
